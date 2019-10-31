@@ -10,7 +10,7 @@ def main():
 
     _, _, n3 = mandelbrot_set(xmin, xmax, ymin, ymax, width, height, max_iterations)
 
-    plt.imshow(n3)
+    plt.imshow(n3.T, origin='lower')
     plt.show()
 
 
@@ -32,9 +32,10 @@ def mandelbrot_set(xmin, xmax, ymin, ymax, width, height, maxiter):
 
     for i in range(width):
         for j in range(height):
-            n3[i,j] = mandelbrot(r1[i] + 1j*r2[j],maxiter)
+            n3[i,j] = mandelbrot(r1[i] + 1j * r2[j], maxiter)
 
     return (r1,r2,n3)
+
 
 if __name__ == '__main__':
     main()
