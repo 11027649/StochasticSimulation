@@ -12,6 +12,7 @@ from numba import jit
 import numpy as np
 import random
 import time
+import os
 
 def main():
 
@@ -43,6 +44,10 @@ def plot_mandelbrot(plane):
     plt.imshow(plane.T, origin='lower')
     plt.ylabel("Im")
     plt.xlabel("Re")
+
+    if not os.path.isdir("figures"):
+        os.makedirs("figures")
+
     plt.savefig("figures/mandelbrot_" + str(time.time()) + ".png")
 
 @jit
