@@ -7,19 +7,19 @@ import time
 def main():
 
     # for each point we do 100 iterations to calculate whether it is in the set or not
-    max_iters = 1000
+    max_iters = 2000
 
     # coordinates
     real_min, real_max = -2, 1
     im_min, im_max = -1.25, 1.25
 
     # amount of points for integration
-    total_points = np.arange(1000, 100000, 1000)
+    total_points = np.arange(1000, 1000000, 1000)
 
     for points in total_points:
         print("points: ", points)
 
-        for test in range(1000):
+        for test in range(5000):
             starttime = time.time()
 
             N = points
@@ -33,7 +33,7 @@ def main():
 
             endtime = time.time()
 
-            with open("results/latin_cube_integration_results.csv", 'a') as resultsfile:
+            with open("../results/lc_2000.csv", 'a') as resultsfile:
                 writer = csv.writer(resultsfile, delimiter=',')
                 writer.writerow([max_iters, points, area, endtime - starttime])
 
