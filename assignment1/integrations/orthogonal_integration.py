@@ -17,31 +17,30 @@ def main():
     im_min, im_max = -1.25, 1.25
 
     # amount of points for integration
-    total_points = np.arange(1000, 1000000, 900)
+    subgrids = np.arange(30, 1000, 10)
+    print(subgrids, subgrids * subgrids)
 
-    for samples in total_points:
+    for subgrid in subgrids:
+        samples = subgrid * subgrid
+
         print("points: ", samples)
 
         # sanity check
         assert math.sqrt(samples) == math.floor(math.sqrt(samples)), "must be able to be squared"
-
-        # define N intervals in both real and imaginary direction
-        real_intervals = np.linspace(real_min, real_max, N + 1)
-        im_intervals = np.linspace(im_min, im_max, N + 1)
 
         total_area = (abs(real_min) + abs(real_max)) * (abs(im_min) + abs(im_max))
 
         for test in range(5000):
             starttime = time.time()
 
-            real_parts, im_parts = generate_o(real_min, real_max, im_min, im_max, samples)
+            real_parts, im_parts = generate_o(real_min, real_max, im_min, im_max, subgrid, samples)
             area = orthogonal_integration(real_parts, im_parts, samples, max_iters, total_area)
 
             endtime = time.time()
 
             with open("../results/orthogonal_integration_results.csv", 'a') as resultsfile:
                 writer = csv.writer(resultsfile, delimiter=',')
-                writer.writerow([max_iters, N, area, endtime-starttime])
+                writer.writerow([max_iters, samples, area, endtime-starttime])
 
 
 def orthogonal_integration(real_parts, im_parts, samples, maxiter, total_area):
@@ -63,13 +62,11 @@ def orthogonal_integration(real_parts, im_parts, samples, maxiter, total_area):
     return float(points_in_set) * total_area / samples
 
 
-def generate_o(real_min, real_max, im_min, im_max, samples):
+def generate_o(real_min, real_max, im_min, im_max, subgrids, samples):
     """ Generates the coordinates of the points using orthogonal sampling. """
 
     values_i = []
     values_r = []
-
-    subgrids = int(math.sqrt(samples))
 
     scale_im = (im_max - im_min) / samples
     scale_real = (real_max - real_min) / samples;

@@ -14,10 +14,15 @@ def main():
     im_min, im_max = -1.25, 1.25
 
     # amount of points for integration
-    total_points = np.arange(1000, 1000000, 1000)
+    # total_points = np.arange(1000, 1000000, 1000)
 
-    for points in total_points:
-        print("points: ", points)
+    # for points in total_points:
+    points = 50000
+
+    max_iterations = np.arange(100, 2000, 100)
+
+    for max_iters in max_iterations:
+        print("iters: ", max_iters)
 
         for test in range(5000):
             starttime = time.time()
@@ -26,7 +31,7 @@ def main():
 
             endtime = time.time()
 
-            with open("../results/mc_2000.csv", 'a') as resultsfile:
+            with open("../data/mc_iters.csv", 'a') as resultsfile:
                 writer = csv.writer(resultsfile, delimiter=',')
                 writer.writerow([max_iters, points, area, endtime - starttime])
 
