@@ -106,6 +106,4 @@ venv.bak/
 # Data
 assignment1/figures/
 .png
-
-#Mac stuff
-.DS_Store
+material/
