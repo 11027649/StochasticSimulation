@@ -32,6 +32,7 @@ MIN_PATIENCE = 1  # Min. customer patience
 MAX_PATIENCE = 3  # Max. customer patience
 
 
+
 def source(env, number, interval, counter):
     """Source generates customers randomly"""
 
