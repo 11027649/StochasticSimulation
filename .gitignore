@@ -104,6 +104,4 @@ venv.bak/
 .mypy_cache/
 
 # Data
-assignment1/figures/
-.png
 material/
