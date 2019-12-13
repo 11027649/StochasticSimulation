@@ -27,3 +27,18 @@ The plots, that can be found in the figures/ folder, can be produced by (for exa
 Results include average waiting times for different workloads for all experiments.
 
 <img src="assignment2/figures/mmn_all.svg?sanitize=true">
+
+
+# Assignment 3: Optimization of energy of particles in a confined space
+In this assignment, we searched for the global optima of particles in a confined space using a simulated annealing algorithm.
+
+### Running the code
+Bash scripts were written to perform all the simulations. There are different bash scripts for each cooling scheme.
+
+### Neighbouring process
+The code to calculate the forces is included in the forces/ folder.
+
+### Results
+All results can be found results/ folder. Configurations look like this:
+
+<img src="assignment3/results/29_particles/exponential_fast/best2_configuration.png">
